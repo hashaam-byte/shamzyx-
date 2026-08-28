@@ -7,14 +7,21 @@
 
 export type ProjectType = "mobile" | "web" | "hardware";
 
+export type ProjectVertical = {
+  name: string;
+  url: string;
+  status: "live" | "in-progress";
+};
+
 export type Project = {
   slug: string;
   name: string;
   tagline: string;
-  image: string; // path in /public/images
-  types: ProjectType[]; // a project can span more than one — e.g. Attendy is web AND mobile
-  story: string; // shown when the card is tapped — the "why/how/when" behind the project
+  image: string;
+  types: ProjectType[];
+  story: string;
   featured?: boolean;
+  verticals?: ProjectVertical[];
 };
 
 export const projects: Project[] = [
@@ -25,6 +32,11 @@ export const projects: Project[] = [
     image: "/images/project-attendy.jpg", // NEEDS REAL IMAGE
     types: ["web", "mobile"],
     story: "NEEDS REAL CONTENT — write the story of when, how, and why you built Attendy.",
+    verticals: [
+      { name: "Attendy Edu", url: "https://attendy-edu.vercel.app", status: "live" },
+      { name: "Attendy Biz", url: "https://attendy-biz.vercel.app", status: "in-progress" },
+      { name: "Attendy Office", url: "https://attendy-office.vercel.app", status: "in-progress" },
+    ],
   },
   {
     slug: "nexttalk",
@@ -44,26 +56,42 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    slug: "ghost-x",
-    name: "GHOST X",
+    slug: "ghost-z",
+    name: "GHOST Z",
     tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
-    image: "/images/project-ghost-x.jpg", // NEEDS REAL IMAGE
-    types: ["web"], // placeholder guess — tell me the real platform(s)
-    story: "NEEDS REAL CONTENT — write the story of when, how, and why you built Ghost X.",
+    image: "/images/project-ghost-z.jpg", // NEEDS REAL IMAGE
+    types: ["web"],
+    story: "NEEDS REAL CONTENT — write the story of when, how, and why you built Ghost Z.",
   },
   {
     slug: "u-plus",
     name: "U+",
     tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
     image: "/images/project-u-plus.jpg", // NEEDS REAL IMAGE
-    types: ["mobile"], // placeholder guess — tell me the real platform(s)
+    types: ["mobile"],
     story: "NEEDS REAL CONTENT — write the story of when, how, and why you built U+.",
+  },
+  {
+    slug: "mscakehubco",
+    name: "MS CAKE HUB CO",
+    tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
+    image: "/images/project-mscakehubco.jpg", // NEEDS REAL IMAGE
+    types: ["web"],
+    story: "NEEDS REAL CONTENT — write the story of when, how, and why you built MS Cake Hub Co.",
+  },
+  {
+    slug: "acex",
+    name: "ACE X",
+    tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
+    image: "/images/project-acex.jpg", // NEEDS REAL IMAGE
+    types: ["web"],
+    story: "NEEDS REAL CONTENT — write the story of when, how, and why you built Ace X.",
   },
 ];
 
 export type StackItem = {
   name: string;
-  icon: string; // path in /public/images, or an inline glyph fallback
+  icon: string;
 };
 
 export const stack: StackItem[] = [

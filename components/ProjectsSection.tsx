@@ -6,6 +6,7 @@ import PhoneFrame from "@/components/frames/PhoneFrame";
 import BrowserFrame from "@/components/frames/BrowserFrame";
 import HardwareFrame from "@/components/frames/HardwareFrame";
 import ProjectStoryModal from "@/components/ProjectStoryModal";
+import Reveal from "@/components/motion/Reveal";
 
 const TYPE_LABEL: Record<ProjectType, string> = {
   mobile: "MOBILE APP",
@@ -17,7 +18,7 @@ export default function ProjectsSection() {
   const [selected, setSelected] = useState<Project | null>(null);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-panel-border" id="projects">
+    <Reveal id="projects" className="grid grid-cols-1 md:grid-cols-2 gap-px bg-panel-border">
       <div className="bg-code-panel p-6 sm:p-10">
         <div className="text-purple text-xs tracking-widest mb-2">02</div>
         <h2 className="font-extrabold text-2xl sm:text-3xl mb-3.5">PROJECTS</h2>
@@ -44,7 +45,6 @@ export default function ProjectsSection() {
               ))}
             </div>
 
-            {/* A project can render more than one frame — e.g. Attendy is web + mobile */}
             <div className="flex items-center justify-center gap-3 flex-wrap py-1">
               {project.types.includes("mobile") && (
                 <PhoneFrame image={project.image} alt={project.name} />
@@ -77,6 +77,6 @@ export default function ProjectsSection() {
       {selected && (
         <ProjectStoryModal project={selected} onClose={() => setSelected(null)} />
       )}
-    </div>
+    </Reveal>
   );
 }

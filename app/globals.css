@@ -17,8 +17,18 @@
   --color-text-dim: #a99fc4;
   --color-text-mute: #6f6482;
 
+  /* Supporting palette — purple stays the signature color; navy is a
+     secondary cool dark tone to alternate with pure black; champagne
+     is a rare warm accent (a featured tag, a hover state) — not a
+     background color. */
+  --color-navy: #232d52;
+  --color-navy-soft: #4a5a8f;
+  --color-champagne: #d4af7a;
+  --color-champagne-soft: #e8d3ab;
+
   --glow-purple-sm: 0 0 8px rgba(168, 85, 247, 0.8);
   --glow-purple-md: 0 0 14px rgba(168, 85, 247, 0.9), 0 0 30px rgba(168, 85, 247, 0.5);
+  --glow-champagne-sm: 0 0 8px rgba(212, 175, 122, 0.7);
 
   --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-fast: 180ms;

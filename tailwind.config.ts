@@ -7,15 +7,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        bg: "#050106",
-        panel: "#0d0710",
-        "panel-border": "rgba(168,85,247,0.14)",
-        purple: "#a855f7",
-        "purple-soft": "#d8c9f0",
-        "text-dim": "#a99fc4",
-        "text-mute": "#6f6482",
-      },
+  colors: {
+  bg: "#050106",
+  panel: "#0d0710",
+  "panel-border": "rgba(168,85,247,0.14)",
+  purple: "#a855f7",
+  "purple-soft": "#d8c9f0",
+  navy: "#232d52",
+  "navy-soft": "#4a5a8f",
+  champagne: "#d4af7a",
+  "champagne-soft": "#e8d3ab",
+  "text-dim": "#a99fc4",
+  "text-mute": "#6f6482",
+},
       fontFamily: {
         mono: ["JetBrains Mono", "Fira Code", "ui-monospace", "monospace"],
         "serif-display": ["var(--font-cinzel)", "Georgia", "serif"],

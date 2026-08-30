@@ -69,24 +69,10 @@ export default function ProjectsSection() {
                     </div>
 
                     <div className="ml-[7px] border-l border-panel-border pl-5 flex flex-col gap-2.5 mt-2">
-                      {project.verticals.map((v) => (
-                        <a
-                          key={v.name}
-                          href={v.status === "live" ? v.url : undefined}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`flex items-center justify-between gap-3 -ml-5 pl-5 relative ${
-                            v.status === "live" ? "hover:text-white cursor-pointer" : "cursor-default"
-                          }`}
-                          onClick={(e) => {
-                            if (v.status !== "live") e.preventDefault();
-                          }}
-                        >
-                          <span
-                            className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-px bg-panel-border"
-                            aria-hidden="true"
-                          />
-                          <span className="text-text-dim text-[13px]">{v.name}</span>
+                      {project.verticals.map((v) => {
+                        const rowClasses =
+                          "flex items-center justify-between gap-3 -ml-5 pl-5 relative";
+                        const statusBadge = (
                           <span
                             className={`text-[9px] tracking-widest px-2 py-0.5 rounded shrink-0 ${
                               v.status === "live"
@@ -96,8 +82,38 @@ export default function ProjectsSection() {
                           >
                             {v.status === "live" ? "LIVE" : "IN PROGRESS"}
                           </span>
-                        </a>
-                      ))}
+                        );
+                        const connector = (
+                          <span
+                            className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-px bg-panel-border"
+                            aria-hidden="true"
+                          />
+                        );
+
+                        if (v.status === "live") {
+                          return (
+                            <a
+                              key={v.name}
+                              href={v.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`${rowClasses} hover:text-white cursor-pointer`}
+                            >
+                              {connector}
+                              <span className="text-text-dim text-[13px]">{v.name}</span>
+                              {statusBadge}
+                            </a>
+                          );
+                        }
+
+                        return (
+                          <div key={v.name} className={`${rowClasses} cursor-default`}>
+                            {connector}
+                            <span className="text-text-dim text-[13px]">{v.name}</span>
+                            {statusBadge}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}

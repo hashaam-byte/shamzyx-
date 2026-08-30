@@ -17,11 +17,12 @@ export type Project = {
   slug: string;
   name: string;
   tagline: string;
-  image: string;
-  types: ProjectType[];
-  story: string;
+  image: string; // path in /public/images
+  types: ProjectType[]; // a project can span more than one — e.g. Attendy is web AND mobile
+  story: string; // shown when the card is tapped — the "why/how/when" behind the project
   featured?: boolean;
-  verticals?: ProjectVertical[];
+  verticals?: ProjectVertical[]; // sub-brands under one parent project — shown as a small tree
+  liveUrl?: string; // powers the "Launch Live Demo" embed — omit for concept/hardware projects
 };
 
 export const projects: Project[] = [
@@ -29,8 +30,9 @@ export const projects: Project[] = [
     slug: "attendy",
     name: "ATTENDY",
     tagline: "School attendance made simple.",
-    image: "/images/project-attendy.jpg", // NEEDS REAL IMAGE
+    image: "/images/project-attendy.jpg", // NEEDS REAL IMAGE — main brand (attendy-web)
     types: ["web", "mobile"],
+    liveUrl: "https://attendy-web.vercel.app",
     story: "NEEDS REAL CONTENT — write the story of when, how, and why you built Attendy.",
     verticals: [
       { name: "Attendy Edu", url: "https://attendy-edu.vercel.app", status: "live" },
@@ -44,6 +46,7 @@ export const projects: Project[] = [
     tagline: "More than messaging. It's an ecosystem.",
     image: "/images/project-nexttalk.jpg", // NEEDS REAL IMAGE
     types: ["mobile"],
+    liveUrl: "https://nexttalk-web.vercel.app",
     story: "NEEDS REAL CONTENT — write the story of when, how, and why you built NextTalk.",
   },
   {
@@ -60,7 +63,8 @@ export const projects: Project[] = [
     name: "GHOST Z",
     tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
     image: "/images/project-ghost-z.jpg", // NEEDS REAL IMAGE
-    types: ["web"],
+    types: ["web"], // matches ghost-z.vercel.app — confirm if mobile too
+    liveUrl: "https://ghost-z.vercel.app",
     story: "NEEDS REAL CONTENT — write the story of when, how, and why you built Ghost Z.",
   },
   {
@@ -68,7 +72,8 @@ export const projects: Project[] = [
     name: "U+",
     tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
     image: "/images/project-u-plus.jpg", // NEEDS REAL IMAGE
-    types: ["mobile"],
+    types: ["mobile"], // placeholder guess — tell me the real platform(s)
+    liveUrl: "https://u-plus.vercel.app",
     story: "NEEDS REAL CONTENT — write the story of when, how, and why you built U+.",
   },
   {
@@ -77,6 +82,7 @@ export const projects: Project[] = [
     tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
     image: "/images/project-mscakehubco.jpg", // NEEDS REAL IMAGE
     types: ["web"],
+    liveUrl: "https://mscakehubco.vercel.app",
     story: "NEEDS REAL CONTENT — write the story of when, how, and why you built MS Cake Hub Co.",
   },
   {
@@ -85,13 +91,23 @@ export const projects: Project[] = [
     tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
     image: "/images/project-acex.jpg", // NEEDS REAL IMAGE
     types: ["web"],
+    liveUrl: "https://acex.vercel.app",
     story: "NEEDS REAL CONTENT — write the story of when, how, and why you built Ace X.",
+  },
+  {
+    slug: "chess14",
+    name: "CHESS14",
+    tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
+    image: "/images/project-chess14.jpg", // NEEDS REAL IMAGE
+    types: ["web"], // placeholder guess — confirm if mobile too
+    liveUrl: "https://chess14.vercel.app",
+    story: "NEEDS REAL CONTENT — write the story of when, how, and why you built Chess14.",
   },
 ];
 
 export type StackItem = {
   name: string;
-  icon: string;
+  icon: string; // path in /public/images, or an inline glyph fallback
 };
 
 export const stack: StackItem[] = [

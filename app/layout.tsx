@@ -3,6 +3,7 @@ import { Cinzel } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import DigitalRain from "@/components/backgrounds/DigitalRain";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${cinzel.variable} bg-bg text-white font-mono overflow-x-hidden`}>
+        <DigitalRain />
         <Navbar />
         {children}
         <Footer />

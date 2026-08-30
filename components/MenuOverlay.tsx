@@ -26,8 +26,7 @@ export default function MenuOverlay({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[100] bg-bg/97 backdrop-blur-md flex flex-col justify-center px-6 sm:px-16"
-        >
+          className="fixed inset-0 z-[100] bg-bg/97 backdrop-blur-md flex flex-col justify-center overflow-y-auto px-6 sm:px-16 py-24">
           <button
             onClick={onClose}
             className="absolute top-6 right-6 sm:right-16 text-white text-2xl w-10 h-10 flex items-center justify-center"

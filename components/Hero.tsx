@@ -1,26 +1,94 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
+
+// ─────────────────────────────────────────────
+// HERO IMAGES — real photos now, crossfading in
+// sequence. Add more here any time; nothing else
+// needs to change.
+// ─────────────────────────────────────────────
+const HERO_IMAGES = [
+  "/images/hero-workspace.png", // wide desk shot, purple "X" neon
+  "/images/hero-workspace-2.png", // close-up: hands typing, code on monitor
+  "/images/hero-workspace-3.png", // wide: whiteboard sketching, "X" sign + city view
+];
+
+const IMAGE_DURATION = 7000; // ms each image stays before crossfading to the next
+const SUBTEXT = "Developer · Designer · Problem solver.";
+const CHAR_DURATION = 0.03;
 
 export default function Hero() {
+  const [imageIndex, setImageIndex] = useState(0);
+  const [typedText, setTypedText] = useState("");
+  const cursorRef = useRef<HTMLSpanElement>(null);
+
+  // Cycle background images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setImageIndex((i) => (i + 1) % HERO_IMAGES.length);
+    }, IMAGE_DURATION);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Typing effect for the subtext line only — not the big headline
+  useEffect(() => {
+    const proxy = { chars: 0 };
+    const tl = gsap.timeline({ delay: 0.6 });
+
+    tl.to(proxy, {
+      chars: SUBTEXT.length,
+      duration: SUBTEXT.length * CHAR_DURATION,
+      ease: "none",
+      onUpdate: () => setTypedText(SUBTEXT.slice(0, Math.floor(proxy.chars))),
+    });
+
+    const cursorTween = gsap.to(cursorRef.current, {
+      opacity: 0,
+      duration: 0.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+      delay: 0.6,
+    });
+
+    return () => {
+      tl.kill();
+      cursorTween.kill();
+    };
+  }, []);
+
   return (
     <section id="home" className="relative min-h-screen flex flex-col justify-end overflow-hidden">
-      <motion.div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/hero-workspace.png')" }}
-        initial={{ scale: 1 }}
-        animate={{ scale: 1.06 }}
-        transition={{ duration: 20, ease: "linear" }}
-      />
+      {/* Crossfading background photos, each with its own slow zoom */}
+      <AnimatePresence mode="sync">
+        <motion.div
+          key={imageIndex}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('${HERO_IMAGES[imageIndex]}')`,
+          }}
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: 1.06 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            opacity: { duration: 1.2 },
+            scale: { duration: IMAGE_DURATION / 1000 + 1.2, ease: "linear" },
+          }}
+        />
+      </AnimatePresence>
 
+      {/* Legibility gradient — a touch of navy in the mid-tone instead of flat black, for depth */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(0deg, rgba(5,1,6,0.95) 0%, rgba(5,1,6,0.55) 45%, rgba(5,1,6,0.15) 75%, rgba(5,1,6,0.3) 100%)",
+            "linear-gradient(0deg, rgba(5,1,6,0.95) 0%, rgba(35,45,82,0.4) 42%, rgba(5,1,6,0.2) 72%, rgba(5,1,6,0.3) 100%)",
         }}
       />
 
+      {/* Binary texture, faint — ties back to the boot sequence */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none opacity-70"
@@ -31,6 +99,7 @@ export default function Hero() {
         }}
       />
 
+      {/* Content — pinned low, big, minimal */}
       <div className="relative z-10 px-6 sm:px-16 pb-20 sm:pb-28">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
@@ -43,16 +112,25 @@ export default function Hero() {
           <span className="text-purple">WHAT&apos;S NEXT.</span>
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-6 text-text-dim text-base sm:text-lg max-w-md"
-        >
-          Developer. Designer. Problem solver.
-        </motion.p>
+        {/* Subtext — terminal-style typing, echoes the boot sequence without repeating it exactly */}
+        <p className="mt-6 text-text-dim text-base sm:text-lg max-w-md font-mono min-h-[1.75em]">
+          {typedText.split(/(·)/).map((chunk, i) =>
+            chunk === "·" ? (
+              <span key={i} className="text-champagne">
+                ·
+              </span>
+            ) : (
+              chunk
+            )
+          )}
+          <span
+            ref={cursorRef}
+            className="inline-block w-[2px] h-[1em] bg-purple ml-0.5 align-middle"
+          />
+        </p>
       </div>
 
+      {/* Scroll cue */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

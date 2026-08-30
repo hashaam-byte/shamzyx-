@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MatrixRainBackground from "@/components/boot/MatrixRainBackground";
 import BootPhase0 from "@/components/boot/BootPhase0";
 import BootPhase1Cursor from "@/components/boot/BootPhase1Cursor";
@@ -11,6 +11,17 @@ type Phase = "phase0" | "phase1-cursor" | "phase2-typing" | "phase3-granted" | "
 
 export default function BootSequence({ onComplete }: { onComplete: () => void }) {
   const [phase, setPhase] = useState<Phase>("phase0");
+  const [skippable, setSkippable] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setSkippable(true), 400);
+    return () => clearTimeout(t);
+  }, []);
+
+  function handleSkip() {
+    setPhase("done");
+    onComplete();
+  }
 
   if (phase === "done") return null;
 
@@ -34,6 +45,15 @@ export default function BootSequence({ onComplete }: { onComplete: () => void })
             onComplete();
           }}
         />
+      )}
+
+      {skippable && (
+        <button
+          onClick={handleSkip}
+          className="absolute bottom-7 right-8 z-20 border border-purple/35 text-text-dim text-xs tracking-wide px-3.5 py-2 rounded font-mono transition-colors hover:border-purple hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple"
+        >
+          Skip →
+        </button>
       )}
     </div>
   );

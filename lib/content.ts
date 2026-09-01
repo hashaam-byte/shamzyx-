@@ -122,14 +122,40 @@ export const stack: StackItem[] = [
 ];
 
 export type JourneyPoint = {
-  year: string;
-  lines: [string, string];
+  label: string; // stage name (e.g. "JSS3") rather than a year
+  title: string; // one-word/short theme for the stage
+  description: string;
 };
 
 export const journey: JourneyPoint[] = [
-  { year: "2022", lines: ["First idea.", "First spark."] },
-  { year: "2023", lines: ["First builds.", "First lessons."] },
-  { year: "2024", lines: ["First product.", "First users."] },
-  { year: "2025", lines: ["Scaling systems.", "Building impact."] },
-  { year: "2026", lines: ["ShamzyX", "was born."] },
+  {
+    label: "JSS3",
+    title: "Curiosity",
+    description: "Discovered coding through a friend, school ICT, Code.org, and simple HTML.",
+  },
+  {
+    label: "SS1",
+    title: "Exploration",
+    description: "Started taking programming seriously and explored CSS, JavaScript, Java, React, Next.js, Python and more.",
+  },
+  {
+    label: "SS1 → SS2",
+    title: "Experimentation",
+    description: "Built NextTalk and experimented with projects like Zing Survey, Connect Hub, Hoom and Ultimate AI.",
+  },
+  {
+    label: "SS2",
+    title: "Expansion",
+    description: "Moved beyond web development into mobile development and explored C#, C++, PHP, Dart, Flutter, React Native and other technologies.",
+  },
+  {
+    label: "SS2",
+    title: "Building for problems",
+    description: "Created projects including Qaseedah, Ghost Z, U+, Chess14 and eventually Attendy.",
+  },
+  {
+    label: "NOW",
+    title: "Still building",
+    description: "Continuing to learn, experiment, build products, and turn ideas into things people can actually use.",
+  },
 ];

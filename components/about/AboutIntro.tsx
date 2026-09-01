@@ -13,15 +13,18 @@ export default function AboutIntro() {
           className="px-6 sm:px-16 py-24 lg:py-0 flex flex-col justify-center order-2 lg:order-1"
         >
           <div className="text-purple text-xs tracking-widest mb-3 font-mono">02 — ABOUT</div>
-          <h1 className="font-extrabold text-4xl sm:text-6xl leading-[0.95] mb-6 max-w-lg">
-            THE BUILDER
+          <h1 className="font-extrabold text-4xl sm:text-6xl leading-[0.95] mb-4 max-w-lg">
+            I STARTED WITH
             <br />
-            BEHIND <span className="text-purple">SHAMZY X.</span>
+            <span className="text-purple">CURIOSITY.</span>
           </h1>
+          <p className="text-champagne text-lg sm:text-xl mb-6 max-w-md font-mono">
+            I stayed because I wanted to build.
+          </p>
           <p className="text-text-dim text-base sm:text-lg max-w-md leading-relaxed">
-            NEEDS REAL CONTENT — who you are, how you got into building things,
-            and what drives you. A couple of paragraphs is plenty; this is
-            where the personal voice comes through.
+            From a young age, I&apos;ve always been fascinated by technology and
+            the way it continues to evolve — the idea that it could change how
+            people live, communicate, learn, and solve problems.
           </p>
         </motion.div>
 
@@ -33,8 +36,9 @@ export default function AboutIntro() {
         >
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/images/hero-workspace-3.png')" }}
+            style={{ backgroundImage: "url('/images/about-portrait.png')" }}
           />
+          {/* Navy-tinted wash for palette cohesion, plus a left-edge fade so it blends into the text column instead of a hard rectangle cut */}
           <div
             className="absolute inset-0"
             style={{

@@ -36,7 +36,7 @@ export default function AboutIntro() {
         >
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/images/about-portrait.png')" }}
+            style={{ backgroundImage: "url('/images/about-potrait.png')" }}
           />
           {/* Navy-tinted wash for palette cohesion, plus a left-edge fade so it blends into the text column instead of a hard rectangle cut */}
           <div

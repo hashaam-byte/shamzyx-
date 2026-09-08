@@ -1,4 +1,5 @@
-import { projects, ProjectType } from "@/lib/content";
+import type { ProjectType } from "@/lib/content";
+import { getProjects } from "@/lib/queries";
 import PhoneFrame from "@/components/frames/PhoneFrame";
 import BrowserFrame from "@/components/frames/BrowserFrame";
 import HardwareFrame from "@/components/frames/HardwareFrame";
@@ -11,7 +12,9 @@ const TYPE_LABEL: Record<ProjectType, string> = {
   hardware: "HARDWARE / CONCEPT",
 };
 
-export default function ProjectsSection() {
+export default async function ProjectsSection() {
+  const projects = await getProjects();
+
   return (
     <section>
       <div className="px-6 sm:px-16 pt-24 sm:pt-32 pb-16">

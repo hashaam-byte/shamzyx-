@@ -2,21 +2,6 @@
 
 import { useState } from "react";
 
-// ─────────────────────────────────────────────
-// LIVE DEMO EMBED
-//
-// Shows the static screenshot by default (cheap,
-// fast, no cost to page load). On click:
-//   - Desktop: swaps in a real <iframe> of the live
-//     site, loaded lazily — nothing loads until the
-//     visitor actually asks for it.
-//   - Mobile: opens the live site in a new tab
-//     instead of embedding it. A live site squeezed
-//     into a phone-width iframe inside a small card
-//     is worse UX than just handing them the real
-//     page full-screen.
-// ─────────────────────────────────────────────
-
 export default function LiveDemoEmbed({
   image,
   alt,

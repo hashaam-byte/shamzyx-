@@ -1,21 +1,3 @@
-// ─────────────────────────────────────────────
-// capture-screenshots.mjs
-//
-// Captures a consistent screenshot for each project
-// and saves it directly into public/images/ with the
-// exact filename lib/content.ts already expects.
-//
-// USAGE:
-//   1. npm install puppeteer --save-dev
-//      (or puppeteer-core if disk space is tight)
-//   2. node scripts/capture-screenshots.mjs
-//
-// Environment variables:
-//   CHROME_PATH - path to an existing Chrome/Chromium executable (Windows example:
-//                 "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
-//   PUPPETEER_EXECUTABLE_PATH - alternative name for CHROME_PATH
-// ─────────────────────────────────────────────
-
 import puppeteer from "puppeteer";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -36,6 +18,7 @@ const PROJECTS = [
   { slug: "project-u-plus", url: "https://u-plus.vercel.app", type: "mobile" },
   { slug: "project-mscakehubco", url: "https://mscakehubco.vercel.app", type: "web" },
   { slug: "project-acex", url: "https://acex.vercel.app", type: "web" },
+  { slug: "project-chess14", url: "https://chess14.vercel.app", type: "web" },
 ];
 
 async function captureOne(browser, project) {
@@ -59,12 +42,7 @@ async function captureOne(browser, project) {
     await new Promise((resolve) => setTimeout(resolve, 1200));
 
     const outputPath = path.join(OUTPUT_DIR, `${project.slug}.jpg`);
-    await page.screenshot({
-      path: outputPath,
-      type: "jpeg",
-      quality: 90,
-      fullPage: false,
-    });
+    await page.screenshot({ path: outputPath, type: "jpeg", quality: 90, fullPage: false });
 
     console.log(`   ✅ Saved to public/images/${project.slug}.jpg`);
   } catch (err) {
@@ -75,25 +53,7 @@ async function captureOne(browser, project) {
 }
 
 async function main() {
-  const execPath = process.env.CHROME_PATH || process.env.PUPPETEER_EXECUTABLE_PATH || null;
-  const launchOptions = {};
-  if (execPath) launchOptions.executablePath = execPath;
-
-  let browser;
-  try {
-    browser = await puppeteer.launch(launchOptions);
-  } catch (err) {
-    console.error("Failed to launch browser:", err.message);
-    if (!execPath) {
-      console.error(
-        "No Chrome executable found. Either run `npx puppeteer@24 browsers install chrome`\n" +
-          "or set CHROME_PATH to your local Chrome/Chromium executable and re-run the script."
-      );
-    } else {
-      console.error(`Tried executablePath=${execPath}`);
-    }
-    process.exit(1);
-  }
+  const browser = await puppeteer.launch();
   for (const project of PROJECTS) {
     await captureOne(browser, project);
   }

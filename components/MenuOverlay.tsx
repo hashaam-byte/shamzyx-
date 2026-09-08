@@ -26,7 +26,8 @@ export default function MenuOverlay({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[100] bg-bg/97 backdrop-blur-md flex flex-col justify-center overflow-y-auto px-6 sm:px-16 py-24">
+          className="fixed inset-0 z-[100] bg-bg/97 backdrop-blur-md flex flex-col justify-center overflow-y-auto px-6 sm:px-16 py-24"
+        >
           <button
             onClick={onClose}
             className="absolute top-6 right-6 sm:right-16 text-white text-2xl w-10 h-10 flex items-center justify-center"
@@ -44,13 +45,9 @@ export default function MenuOverlay({
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.4, delay: 0.05 * i, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Link
-                  href={link.href}
-                  onClick={onClose}
-                  className="group flex items-baseline gap-4 py-2"
-                >
+                <Link href={link.href} onClick={onClose} className="group flex items-baseline gap-4 py-2">
                   <span className="text-purple text-sm font-mono">{link.num}</span>
-                  <span className="text-white text-[12vw] sm:text-6xl font-extrabold leading-none tracking-tight group-hover:text-purple transition-colors">
+                  <span className="text-white text-[clamp(2rem,10vw,3.75rem)] font-extrabold leading-none tracking-tight group-hover:text-purple transition-colors">
                     {link.label}
                   </span>
                 </Link>

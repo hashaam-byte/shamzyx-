@@ -36,14 +36,12 @@ export default function AboutIntro() {
         >
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/images/about-potrait.png')" }}
+            style={{ backgroundImage: "url('/images/about-portrait.png')" }}
           />
-          {/* Navy-tinted wash for palette cohesion, plus a left-edge fade so it blends into the text column instead of a hard rectangle cut */}
           <div
             className="absolute inset-0"
             style={{
-              background:
-                "linear-gradient(90deg, rgba(5,1,6,0.85) 0%, rgba(35,45,82,0.25) 25%, transparent 55%), linear-gradient(0deg, rgba(5,1,6,0.6), transparent 40%)",
+              background: "linear-gradient(90deg, rgba(5,1,6,0.85) 0%, rgba(35,45,82,0.25) 25%, transparent 55%), linear-gradient(0deg, rgba(5,1,6,0.6), transparent 40%)",
             }}
           />
           <div

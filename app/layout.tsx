@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Cinzel } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import SiteChrome from "@/components/SiteChrome";
 import DigitalRain from "@/components/backgrounds/DigitalRain";
 
 const cinzel = Cinzel({
@@ -21,9 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={`${cinzel.variable} bg-bg text-white font-mono overflow-x-hidden`}>
         <DigitalRain />
-        <Navbar />
-        {children}
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

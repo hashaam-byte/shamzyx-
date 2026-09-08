@@ -29,15 +29,9 @@ export default function BootSequence({ onComplete }: { onComplete: () => void })
     <div className="fixed inset-0 z-[999] bg-bg overflow-hidden">
       <MatrixRainBackground />
 
-      {phase === "phase0" && (
-        <BootPhase0 onComplete={() => setPhase("phase1-cursor")} />
-      )}
-      {phase === "phase1-cursor" && (
-        <BootPhase1Cursor onComplete={() => setPhase("phase2-typing")} />
-      )}
-      {phase === "phase2-typing" && (
-        <BootPhase2Typing onComplete={() => setPhase("phase3-granted")} />
-      )}
+      {phase === "phase0" && <BootPhase0 onComplete={() => setPhase("phase1-cursor")} />}
+      {phase === "phase1-cursor" && <BootPhase1Cursor onComplete={() => setPhase("phase2-typing")} />}
+      {phase === "phase2-typing" && <BootPhase2Typing onComplete={() => setPhase("phase3-granted")} />}
       {phase === "phase3-granted" && (
         <BootPhase3Granted
           onComplete={() => {

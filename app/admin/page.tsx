@@ -1,6 +1,14 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import SignOutButton from "@/components/admin/SignOutButton";
+
+const SECTIONS = [
+  { href: "/admin/stack", label: "Stack", desc: "Add, edit, or remove tech stack items" },
+  { href: "/admin/journey", label: "Journey", desc: "Manage your timeline entries" },
+  { href: "/admin/messages", label: "Messages", desc: "View contact form submissions" },
+  // Projects management intentionally held off for now — see note in dashboard body
+];
 
 export default async function AdminDashboardPage() {
   const supabase = await createClient();
@@ -8,8 +16,6 @@ export default async function AdminDashboardPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Middleware already handles this redirect in normal use — this is a
-  // second, defensive check in case the page is ever reached another way.
   if (!user) {
     redirect("/admin/login");
   }
@@ -24,10 +30,23 @@ export default async function AdminDashboardPage() {
         <SignOutButton />
       </div>
 
-      <p className="text-text-dim text-sm max-w-md">
-        Signed in as {user.email}. Project, stack, journey, and message
-        management screens go here next.
+      <p className="text-text-dim text-sm max-w-md mb-10">
+        Signed in as {user.email}. Projects management is intentionally on
+        hold until the project content itself is finalized.
       </p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl">
+        {SECTIONS.map((section) => (
+          <Link
+            key={section.href}
+            href={section.href}
+            className="bg-code-panel border border-panel-border rounded-lg p-5 hover:border-purple/40 transition-colors"
+          >
+            <div className="font-extrabold text-lg mb-1.5">{section.label}</div>
+            <p className="text-text-dim text-xs leading-relaxed">{section.desc}</p>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

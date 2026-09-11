@@ -4,6 +4,7 @@ export type ProjectVertical = {
   name: string;
   url: string;
   status: "live" | "in-progress";
+  image?: string;
 };
 
 export type Project = {
@@ -28,7 +29,12 @@ export const projects: Project[] = [
     liveUrl: "https://attendy-web.vercel.app",
     story: "NEEDS REAL CONTENT — write the story of when, how, and why you built Attendy.",
     verticals: [
-      { name: "Attendy Edu", url: "https://attendy-edu.vercel.app", status: "live" },
+      {
+        name: "Attendy Edu",
+        url: "https://attendy-edu.vercel.app",
+        status: "live",
+        image: "/images/vertical-attendy-edu.jpg",
+      },
       { name: "Attendy Biz", url: "https://attendy-biz.vercel.app", status: "in-progress" },
       { name: "Attendy Office", url: "https://attendy-office.vercel.app", status: "in-progress" },
     ],
@@ -38,54 +44,27 @@ export const projects: Project[] = [
     name: "NEXTTALK",
     tagline: "More than messaging. It's an ecosystem.",
     image: "/images/project-nexttalk.jpg",
-    types: ["mobile"],
+    types: ["web"],
     liveUrl: "https://nexttalk-web.vercel.app",
     story: "NEEDS REAL CONTENT — write the story of when, how, and why you built NextTalk.",
-  },
-  {
-    slug: "floodguard",
-    name: "FLOODGUARD",
-    tagline: "A conceptual hardware idea for smart flood control.",
-    image: "/images/project-floodguard.jpg",
-    types: ["hardware"],
-    story: "NEEDS REAL CONTENT — write the story of when, how, and why you conceived FloodGuard.",
-    featured: true,
-  },
-  {
-    slug: "ghost-z",
-    name: "GHOST Z",
-    tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
-    image: "/images/project-ghost-z.jpg",
-    types: ["web"],
-    liveUrl: "https://ghost-z.vercel.app",
-    story: "NEEDS REAL CONTENT — write the story of when, how, and why you built Ghost Z.",
   },
   {
     slug: "u-plus",
     name: "U+",
     tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
     image: "/images/project-u-plus.jpg",
-    types: ["mobile"],
+    types: ["web"],
     liveUrl: "https://u-plus.vercel.app",
     story: "NEEDS REAL CONTENT — write the story of when, how, and why you built U+.",
   },
   {
-    slug: "mscakehubco",
+    slug: "mscakehub",
     name: "MS CAKE HUB CO",
     tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
-    image: "/images/project-mscakehubco.jpg",
+    image: "/images/project-mscakehub.jpg",
     types: ["web"],
-    liveUrl: "https://mscakehubco.vercel.app",
+    liveUrl: "https://mscakehub.vercel.app",
     story: "NEEDS REAL CONTENT — write the story of when, how, and why you built MS Cake Hub Co.",
-  },
-  {
-    slug: "acex",
-    name: "ACE X",
-    tagline: "NEEDS REAL CONTENT — add a one-line tagline.",
-    image: "/images/project-acex.jpg",
-    types: ["web"],
-    liveUrl: "https://acex.vercel.app",
-    story: "NEEDS REAL CONTENT — write the story of when, how, and why you built Ace X.",
   },
   {
     slug: "chess14",
@@ -128,3 +107,31 @@ export const journey: JourneyPoint[] = [
   { label: "SS2", title: "Building for problems", description: "Created projects including Qaseedah, Ghost Z, U+, Chess14 and eventually Attendy." },
   { label: "NOW", title: "Still building", description: "Continuing to learn, experiment, build products, and turn ideas into things people can actually use." },
 ];
+
+export type Service = {
+  title: string;
+  description: string;
+};
+
+export const services: Service[] = [
+  { title: "Web Development", description: "NEEDS REAL CONTENT — describe this service in a sentence." },
+  { title: "Mobile App Development", description: "NEEDS REAL CONTENT — describe this service in a sentence." },
+];
+
+export type SiteSettings = {
+  phone: string | null;
+  email: string | null;
+  xUrl: string | null;
+  whatsappUrl: string | null;
+  instagramUrl: string | null;
+  githubUrl: string | null;
+};
+
+export const siteSettings: SiteSettings = {
+  phone: null,
+  email: "hello@example.com",
+  xUrl: null,
+  whatsappUrl: null,
+  instagramUrl: null,
+  githubUrl: null,
+};

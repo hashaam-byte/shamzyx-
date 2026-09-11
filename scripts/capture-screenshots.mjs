@@ -16,7 +16,7 @@ const PROJECTS = [
   { slug: "project-floodguard", url: null, type: "hardware" },
   { slug: "project-ghost-z", url: "https://ghost-z.vercel.app", type: "web" },
   { slug: "project-u-plus", url: "https://u-plus.vercel.app", type: "mobile" },
-  { slug: "project-mscakehubco", url: "https://mscakehubco.vercel.app", type: "web" },
+  { slug: "project-mscakehubco", url: "https://mscakehub.vercel.app", type: "web" },
   { slug: "project-acex", url: "https://acex.vercel.app", type: "web" },
   { slug: "project-chess14", url: "https://chess14.vercel.app", type: "web" },
 ];

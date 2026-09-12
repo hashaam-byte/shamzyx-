@@ -1,7 +1,9 @@
-import { stack } from "@/lib/content";
+import { getStackItems } from "@/lib/queries";
 import Reveal from "@/components/motion/Reveal";
 
-export default function StackSection() {
+export default async function StackSection() {
+  const stack = await getStackItems();
+
   return (
     <Reveal id="stack" className="px-6 sm:px-16 py-24 sm:py-36 border-t border-panel-border">
       <div className="text-purple text-xs tracking-widest mb-6 font-mono">

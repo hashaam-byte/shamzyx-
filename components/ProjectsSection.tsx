@@ -1,22 +1,9 @@
-<<<<<<< Updated upstream
-import { projects, ProjectType } from "@/lib/content";
-import PhoneFrame from "@/components/frames/PhoneFrame";
-import BrowserFrame from "@/components/frames/BrowserFrame";
-import HardwareFrame from "@/components/frames/HardwareFrame";
-import LiveDemoEmbed from "@/components/LiveDemoEmbed";
-import Reveal from "@/components/motion/Reveal";
-
-const TYPE_LABEL: Record<ProjectType, string> = {
-  mobile: "MOBILE APP",
-  web: "WEBSITE",
-  hardware: "HARDWARE / CONCEPT",
-};
-=======
 import { getProjects } from "@/lib/queries";
 import ProjectsAccordion from "@/components/ProjectsAccordion";
->>>>>>> Stashed changes
 
-export default function ProjectsSection() {
+export default async function ProjectsSection() {
+  const projects = await getProjects();
+
   return (
     <section>
       <div className="px-6 sm:px-16 pt-24 sm:pt-32 pb-12">

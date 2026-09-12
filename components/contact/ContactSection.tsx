@@ -13,8 +13,7 @@ export default function ContactSection() {
       <div
         className="absolute inset-0"
         style={{
-          background:
-            "linear-gradient(0deg, rgba(5,1,6,0.95) 0%, rgba(35,45,82,0.35) 40%, rgba(5,1,6,0.25) 70%, rgba(5,1,6,0.35) 100%)",
+          background: "linear-gradient(0deg, rgba(5,1,6,0.95) 0%, rgba(35,45,82,0.35) 40%, rgba(5,1,6,0.25) 70%, rgba(5,1,6,0.35) 100%)",
         }}
       />
 
@@ -35,7 +34,7 @@ export default function ContactSection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="text-purple text-xs tracking-widest mb-3 font-mono">05 — CONTACT</div>
-          <h1 className="font-extrabold leading-[0.95] text-[13vw] sm:text-[7vw] lg:text-[5.5vw] tracking-tight max-w-4xl">
+          <h1 className="font-extrabold leading-[0.95] text-[clamp(2rem,8vw,5.5rem)] tracking-tight max-w-4xl">
             LET&apos;S BUILD
             <br />
             <span className="text-champagne">SOMETHING.</span>
@@ -48,8 +47,8 @@ export default function ContactSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-8 flex flex-wrap gap-x-8 gap-y-3 font-mono text-sm"
         >
-          <a href="mailto:Shamzyx1@gmail.com" className="text-text-dim hover:text-white transition-colors">
-            Shamzyx1@gmail.com
+          <a href="mailto:hello@example.com" className="text-text-dim hover:text-white transition-colors">
+            hello@example.com
           </a>
           <a href="#" className="text-text-dim hover:text-white transition-colors">
             @shamzyx — Twitter/X

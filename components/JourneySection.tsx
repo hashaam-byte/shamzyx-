@@ -1,7 +1,9 @@
-import { journey } from "@/lib/content";
+import { getJourneyPoints } from "@/lib/queries";
 import Reveal from "@/components/motion/Reveal";
 
-export default function JourneySection() {
+export default async function JourneySection() {
+  const journey = await getJourneyPoints();
+
   return (
     <section className="px-6 sm:px-16 py-24 sm:py-32">
       <div className="text-purple text-xs tracking-widest mb-3 font-mono">04 — JOURNEY</div>
@@ -12,15 +14,11 @@ export default function JourneySection() {
       </h1>
 
       <div className="relative mt-20 max-w-2xl">
-        {/* Vertical line running through all entries */}
-        <div
-          className="absolute left-[11px] top-2 bottom-2 w-px bg-panel-border"
-          aria-hidden="true"
-        />
+        <div className="absolute left-[11px] top-2 bottom-2 w-px bg-panel-border" aria-hidden="true" />
 
         <div className="flex flex-col gap-16 sm:gap-20">
           {journey.map((point, i) => {
-            const isLast = i === journey.length - 1; // most recent milestone gets the champagne highlight
+            const isLast = i === journey.length - 1;
 
             return (
               <Reveal key={`${point.label}-${point.title}`} delay={i * 0.05} className="relative pl-10">
@@ -31,24 +29,14 @@ export default function JourneySection() {
                 >
                   <span
                     className={`w-2 h-2 rounded-full ${isLast ? "bg-champagne" : "bg-purple"}`}
-                    style={{
-                      boxShadow: isLast ? "var(--glow-champagne-sm)" : "var(--glow-purple-sm)",
-                    }}
+                    style={{ boxShadow: isLast ? "var(--glow-champagne-sm)" : "var(--glow-purple-sm)" }}
                   />
                 </span>
 
-                <div
-                  className={`text-xs tracking-widest mb-2 font-mono ${
-                    isLast ? "text-champagne" : "text-purple"
-                  }`}
-                >
+                <div className={`text-xs tracking-widest mb-2 font-mono ${isLast ? "text-champagne" : "text-purple"}`}>
                   {point.label}
                 </div>
-                <div
-                  className={`font-extrabold text-3xl sm:text-5xl leading-tight mb-3 ${
-                    isLast ? "text-champagne" : "text-white"
-                  }`}
-                >
+                <div className={`font-extrabold text-3xl sm:text-5xl leading-tight mb-3 ${isLast ? "text-champagne" : "text-white"}`}>
                   {point.title}
                 </div>
                 <p className="text-text-dim text-base sm:text-lg max-w-md">

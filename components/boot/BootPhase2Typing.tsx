@@ -3,23 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
-// ─────────────────────────────────────────────
-// BOOT PHASE 2 — "System boot" (the typing)
-//
-// Each line types out character by character at a
-// steady rate, commits as static text, brief pause,
-// next line starts. A cursor blinks (opacity pulse)
-// at the end of whichever line is currently typing.
-//
-// Typing speed is driven by a GSAP tween on a proxy
-// object (not manual setInterval) so it's easy to
-// re-time later — change CHAR_DURATION/LINE_PAUSE
-// and everything re-times itself consistently.
-//
-// Timing: ~18ms/char x total chars + pauses.
-// Roughly 2.2s total for all 5 lines.
-// ─────────────────────────────────────────────
-
 const BOOT_LINES = [
   "initializing shamzyx...",
   "loading creative core...",
@@ -28,8 +11,8 @@ const BOOT_LINES = [
   "connecting to imagination...",
 ];
 
-const CHAR_DURATION = 0.018; // seconds per character
-const LINE_PAUSE = 0.22; // seconds between committing a line and starting the next
+const CHAR_DURATION = 0.018;
+const LINE_PAUSE = 0.22;
 
 export default function BootPhase2Typing({ onComplete }: { onComplete: () => void }) {
   const [linesShown, setLinesShown] = useState<string[]>([]);
@@ -39,19 +22,11 @@ export default function BootPhase2Typing({ onComplete }: { onComplete: () => voi
 
   useEffect(() => {
     const cursorTween = gsap.to(cursorRef.current, {
-      opacity: 0.15,
-      duration: 0.45,
-      repeat: -1,
-      yoyo: true,
-      ease: "power1.inOut",
+      opacity: 0.15, duration: 0.45, repeat: -1, yoyo: true, ease: "power1.inOut",
     });
 
     const master = gsap.timeline({
-      onComplete: () => {
-        setTypingActive(false);
-        cursorTween.kill();
-        onComplete();
-      },
+      onComplete: () => { setTypingActive(false); cursorTween.kill(); onComplete(); },
     });
 
     BOOT_LINES.forEach((line) => {
@@ -69,10 +44,7 @@ export default function BootPhase2Typing({ onComplete }: { onComplete: () => voi
       master.to({}, { duration: LINE_PAUSE });
     });
 
-    return () => {
-      master.kill();
-      cursorTween.kill();
-    };
+    return () => { master.kill(); cursorTween.kill(); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onComplete]);
 
@@ -84,15 +56,10 @@ export default function BootPhase2Typing({ onComplete }: { onComplete: () => voi
             <span className="text-purple">{">"}</span> {line}
           </div>
         ))}
-
         {typingActive && (
           <div className="text-purple-soft text-sm tracking-wide leading-relaxed">
             <span className="text-purple">{">"}</span> {currentTyped}
-            <span
-              ref={cursorRef}
-              className="inline-block w-2 h-[15px] bg-purple ml-1 -mb-0.5"
-              style={{ boxShadow: "var(--glow-purple-sm)" }}
-            />
+            <span ref={cursorRef} className="inline-block w-2 h-[15px] bg-purple ml-1 -mb-0.5" style={{ boxShadow: "var(--glow-purple-sm)" }} />
           </div>
         )}
       </div>
